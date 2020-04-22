@@ -67,7 +67,7 @@ public class ValidParentheses {
     static String str5 = "{[]}";
 
     public static void main(String[] args) {
-        System.out.println(isValid1(str1));
+        System.out.println(isValid3(str5));
     }
 
     /**
@@ -146,5 +146,20 @@ public class ValidParentheses {
             }
         }
         return stack.isEmpty() ? true : false;
+    }
+
+    /**
+     * 方法3：采用() {} [] 两两匹配，并且消除的方式来解
+     */
+    public static boolean isValid3(String s) {
+        int len;
+        // 若是替换后，两个长度值不相等，则跳出循环
+        do {
+            len = s.length();
+            s = s.replace("()", "").replace("[]", "").replace("{}", "");
+        }
+        while (len != s.length());
+        // 消除合法括号后，原字符串长度为0则为true，不为0则为false
+        return s.length() == 0;
     }
 }
